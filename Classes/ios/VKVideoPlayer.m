@@ -1312,12 +1312,7 @@ typedef enum {
 @implementation AVPlayer (VKPlayer)
 
 - (void)seekToTimeInSeconds:(float)time completionHandler:(void (^)(BOOL finished))completionHandler {
-  if ([self respondsToSelector:@selector(seekToTime:toleranceBefore:toleranceAfter:completionHandler:)]) {
-    [self seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero completionHandler:completionHandler];
-  } else {
-    [self seekToTime:CMTimeMakeWithSeconds(time, 1) toleranceBefore:kCMTimeZero toleranceAfter:kCMTimeZero];
-    completionHandler(YES);
-  }
+    [self seekToTime:CMTimeMakeWithSeconds(time, 1) completionHandler:completionHandler];
 }
 
 - (NSTimeInterval)currentItemDuration {
